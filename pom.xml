@@ -1,136 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.yzh.springcloud</groupId>
-  <artifactId>springcloud2020</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <groupId>com.yzh.springcloud</groupId>
+    <artifactId>springcloud2020</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <modules>
-      <module>cloud-provider-payment8001</module>
-  </modules>
+    <modules>
+        <module>cloud-provider-payment8001</module>
+    </modules>
 
-  <name>Maven</name>
+    <name>Maven</name>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>14</maven.compiler.source>
-    <maven.compiler.target>14</maven.compiler.target>
-    <junit.version>4.12</junit.version>
-    <log4j.version>1.2.17</log4j.version>
-    <lombok.version>1.16.18</lombok.version>
-    <mysql.version>5.1.47</mysql.version>
-    <druid.version>1.1.16</druid.version>
-    <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
-    <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
-    <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
-    <alibaba.cloud.version>2.1.0.RELEASE</alibaba.cloud.version>
-  </properties>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <lombok.version>1.16.18</lombok.version>
+        <mysql.version>5.1.47</mysql.version>
+        <druid.version>1.1.16</druid.version>
+        <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
+        <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
+        <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
+        <alibaba.cloud.version>2.1.0.RELEASE</alibaba.cloud.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>alimaven spring plugin</id>
+            <name>alimaven spring plugin</name>
+            <url>https://maven.aliyun.com/repository/spring-plugin</url>
+        </pluginRepository>
+    </pluginRepositories>
 
 
-  <dependencyManagement>
-    <dependencies>
-      <!-- Spring boot 2.2.2 -->
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring.boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring boot 2.2.2 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-      <!-- Spring cloud Hoxton.SR1 -->
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring.cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
+            <!-- Spring cloud Hoxton.SR1 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-      <!-- Spring cloud alibaba 2.1.0.RELEASE -->
-      <dependency>
-        <groupId>com.alibaba.cloud</groupId>
-        <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-        <version>${alibaba.cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
+            <!-- Spring cloud alibaba 2.1.0.RELEASE -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${alibaba.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
-      <!-- mysql -->
-      <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>${mysql.version}</version>
-      </dependency>
+            <!-- mysql -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
 
-      <!-- druid -->
-      <dependency>
-        <groupId>com.alibaba</groupId>
-        <artifactId>druid</artifactId>
-        <version>${druid.version}</version>
-      </dependency>
+            <!-- druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
 
-      <!-- mybatis-spring-boot -->
-      <dependency>
-        <groupId>org.mybatis.spring.boot</groupId>
-        <artifactId>mybatis-spring-boot-starter</artifactId>
-        <version>${mybatis.spring.boot.version}</version>
-      </dependency>
+            <!-- mybatis-spring-boot -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.spring.boot.version}</version>
+            </dependency>
 
-      <!--junit-->
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-      </dependency>
+            <!--junit-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
 
-      <!--log4j-->
-      <dependency>
-        <groupId>log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>${log4j.version}</version>
-      </dependency>
+            <!--log4j-->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
 
-    </dependencies>
-  </dependencyManagement>
+        </dependencies>
+    </dependencyManagement>
 
-  <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
-      <plugins>
-        <!-- 清理构建目录下得全部内容,构建目录默认是target -->
-        <plugin>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>3.1.0</version>
-        </plugin>
-        <!-- 负责为Java项目生成静态HTML网站的插件 -->
-        <plugin>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.1</version>
-        </plugin>
-        <!-- 用来统计maven依赖等信息。-->
-        <plugin>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <!-- 能够将Spring Boot应用打包为可执行的jar或war文件 -->
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <!-- 是否让run目标和mvn命令是在同一个进程中执行 -->
-          <fork>true</fork>
-          <!-- 这将在发布web应用时使资源及时刷新。-->
-          <addResources>true</addResources>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+    <build>
+        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+            <plugins>
+                <!-- 清理构建目录下得全部内容,构建目录默认是target -->
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.1.0</version>
+                </plugin>
+                <!-- 负责为Java项目生成静态HTML网站的插件 -->
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+                <!-- 用来统计maven依赖等信息。-->
+                <plugin>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <!-- 能够将Spring Boot应用打包为可执行的jar或war文件 -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
+                <configuration>
+                    <!-- 是否让run目标和mvn命令是在同一个进程中执行 -->
+                    <fork>true</fork>
+                    <!-- 这将在发布web应用时使资源及时刷新。-->
+                    <addResources>true</addResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
