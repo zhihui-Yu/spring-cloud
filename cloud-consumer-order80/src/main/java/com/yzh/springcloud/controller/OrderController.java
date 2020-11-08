@@ -34,7 +34,7 @@ public class OrderController {
 
     @GetMapping("/consumer/payment/get/{id}")
     public CommonResult get(@PathVariable("id") Long id) {
-        logger.info("get===");
+        logger.info("get");
         return restTemplate.getForObject(PAYMENT_URL + "/payment/" + id, CommonResult.class);
     }
 }
