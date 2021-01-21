@@ -11,3 +11,6 @@ eureka:
     fetchRegister: true
     service-url:
       defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+  instance:
+    instance-id: cloud-consume-order80
+    perfer-ip-address: true

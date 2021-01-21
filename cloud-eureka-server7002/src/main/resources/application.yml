@@ -12,3 +12,6 @@ eureka:
     service-url:
       # 设置 eureka的 地址, 注册和查询服务都需要这个地址
       defaultZone: http://127.0.0.1:7001/eureka
+  server:
+    enable-self-preservation: false
+    eviction-timer-interval-in-ms: 2000
