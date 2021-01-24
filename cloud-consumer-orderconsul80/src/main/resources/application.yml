@@ -1,0 +1,17 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: cloud-consumer-orderconsul80
+  cloud:
+    consul:
+      host: 192.168.123.128
+      port: 8500
+      discovery:
+        # hostname: 192.168.123.128
+        service-name: ${spring.application.name}
+        prefer-ip-address: true
+        # 发送心跳
+        heartbeat:
+          enabled: true

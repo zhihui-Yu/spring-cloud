@@ -13,13 +13,13 @@ import javax.annotation.Resource;
 @RestController
 @Slf4j
 public class SimpleController {
-    private static final String PAYMENT_URL = "http://cloud-provider-payment";
+    private static final String PAYMENT_URL = "http://cloud-provider-paymentconsul8006";
 
     @Resource
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
-    @RequestMapping(value = "/order/payment")
-    public String paymentInfo() {
-        return restTemplate.getForObject(PAYMENT_URL + "/payment/zk", String.class);
+    @RequestMapping(value = "/consumer/order/payment/consul")
+    public String consul() {
+        return restTemplate.getForObject(PAYMENT_URL + "/payment/consul", String.class);
     }
 }

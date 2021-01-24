@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
  * @author simple
  */
 @Configuration
-public class ApplicationContextConfig {
+public class SpringApplicationConfig {
     @Bean
     @LoadBalanced
     public RestTemplate restTemplate() {
