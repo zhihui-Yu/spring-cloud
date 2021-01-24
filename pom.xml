@@ -16,6 +16,8 @@
         <module>cloud-eureka-service7001</module>
         <module>cloud-eureka-server7002</module>
         <module>cloud-provider-payment8002</module>
+        <module>cloud-provider-payment8004</module>
+        <module>cloud-consume-orderzk80</module>
     </modules>
 
     <name>Maven</name>
@@ -33,6 +35,10 @@
         <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
         <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
         <alibaba.cloud.version>2.1.0.RELEASE</alibaba.cloud.version>
+        <alibaba.druid.version>1.1.10</alibaba.druid.version>
+        <zookeeper.version>3.4.9</zookeeper.version>
+        <commons.version>1.0-SNAPSHOT</commons.version>
+        <hutool.version>5.4.6</hutool.version>
     </properties>
 
     <repositories>
@@ -114,6 +120,33 @@
                 <version>${log4j.version}</version>
             </dependency>
 
+            <!-- druid 与 spring-boot整合 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${alibaba.druid.version}</version>
+            </dependency>
+
+            <!-- 公共参数包 commons -->
+            <dependency>
+                <groupId>com.yzh.springcloud</groupId>
+                <artifactId>cloud-api-commons</artifactId>
+                <version>${commons.version}</version>
+            </dependency>
+
+            <!-- zookeeper -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+
+            <!-- hutool -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
