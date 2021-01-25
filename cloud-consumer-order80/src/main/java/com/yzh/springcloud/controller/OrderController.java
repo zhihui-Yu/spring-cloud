@@ -5,6 +5,7 @@ import com.yzh.springcloud.entities.Payment;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,5 +36,25 @@ public class OrderController {
     public CommonResult get(@PathVariable("id") Long id) {
         logger.info("get");
         return restTemplate.getForObject(PAYMENT_URL + "/payment/" + id, CommonResult.class);
+    }
+
+    @GetMapping("/consumer/payment/get-for-entity/{id}")
+    public CommonResult getForEntity(@PathVariable("id") Long id) {
+        ResponseEntity<CommonResult> entity = restTemplate.getForEntity(PAYMENT_URL + "/payment/" + id, CommonResult.class);
+        if (entity.getStatusCode().is2xxSuccessful()) {
+            return entity.getBody();
+        } else {
+            return new CommonResult(500, "operation failed.");
+        }
+    }
+
+    @PostMapping("/consumer/payment/post-for-entity/{id}")
+    public CommonResult postForEntity(@RequestBody Payment payment) {
+        ResponseEntity<CommonResult> entity = restTemplate.postForEntity(PAYMENT_URL + "/payment", payment, CommonResult.class);
+        if (entity.getStatusCode().is2xxSuccessful()) {
+            return entity.getBody();
+        } else {
+            return new CommonResult(400, "post failed.");
+        }
     }
 }

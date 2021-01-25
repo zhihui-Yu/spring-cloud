@@ -1,0 +1,5 @@
+1. 学习新框架：
+  是什么，干什么，去哪里下载，怎么玩。
+
+2. 项目创建
+  建module -> 导pom -> application.yml -> 创建Main.class -> 建dao service controller...
