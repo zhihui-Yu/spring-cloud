@@ -2,9 +2,12 @@ package com.yzh.springcloud.controller;
 
 import com.yzh.springcloud.entities.CommonResult;
 import com.yzh.springcloud.entities.Payment;
+import com.yzh.springcloud.loadbalance.LoadBalance;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author simple
@@ -25,6 +29,10 @@ public class OrderController {
     public static final String PAYMENT_URL = "http://CLOUD-PAYMENT-SERVICE";
     @Resource
     private RestTemplate restTemplate;
+    @Resource
+    LoadBalance loadBalance;
+    @Resource
+    DiscoveryClient discoveryClient;
 
     @PostMapping("/consumer/payment/create")
     public CommonResult create(@RequestBody Payment payment) {
@@ -56,5 +64,12 @@ public class OrderController {
         } else {
             return new CommonResult(400, "post failed.");
         }
+    }
+
+    @GetMapping("/consumer/payment/load-balance")
+    public String loadBalance() {
+        List<ServiceInstance> services = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        ServiceInstance service = loadBalance.choose(services);
+        return restTemplate.getForObject(service.getUri() + "/payment/port", String.class);
     }
 }

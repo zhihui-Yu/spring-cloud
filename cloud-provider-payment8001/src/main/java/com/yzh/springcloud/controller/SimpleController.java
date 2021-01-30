@@ -70,4 +70,9 @@ public class SimpleController {
         }
         return discoveryClient;
     }
+
+    @GetMapping("/payment/port")
+    public String port() {
+        return port;
+    }
 }
