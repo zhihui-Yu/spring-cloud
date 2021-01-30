@@ -75,4 +75,14 @@ public class SimpleController {
     public String port() {
         return port;
     }
+
+    @GetMapping("/payment/timeout")
+    public String timeout() {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return port;
+    }
 }

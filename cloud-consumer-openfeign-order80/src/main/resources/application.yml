@@ -1,0 +1,29 @@
+server:
+  port: 80
+
+
+spring:
+  application:
+    name: cloud-consume-order-feign
+
+eureka:
+  client:
+    # 由于不需要被其他服务发现， 所以可以不注册进eureka
+    register-with-eureka: false
+#    fetchRegister: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+  instance:
+    instance-id: cloud-consume-order-feign
+    perfer-ip-address: true
+# 设置feign的客户端超时时间，默认可以通过ribbon的来配置
+ribbon:
+  # 指与相应服务建立连接的时间
+  ReadTimeout: 5000
+  # 指获取资源的时间
+  ConnectTimeout: 5000
+
+logging:
+  level:
+    # feign 以什么级别监测哪一个接口
+    com.yzh.springcloud.service.PaymentService: debug

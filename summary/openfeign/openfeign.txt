@@ -1,0 +1,11 @@
+openfeign:
+  1. 将远程服务的接口定义在自己项目下，添加@FeignClient声明这个接口是远程服务提供的接口。
+  2. @EnableFeignClients标注用于修饰Spring Boot应用的入口类，以通知Spring Boot启动应用时，扫描应用中声明的Feign客户端可访问的Web服务。
+  3. 自带负载均衡(内含 ribbon 包)
+  4. 默认超时为1s，可以通过配置ribbon 来改变超时时间
+  5. 可以配置调用过程中的日志显示(feign自身有包含
+        1. NONE [默认的，什么都不显示]
+        2. BASIC [请求方法 + URL + 响应码 + 执行时间]
+        3. HEADERS [BASIC + 请求和响应的头信息]
+        4. FULL [HEADERS + 请求和响应的正文和元数据]
+        [配置方法 logging:level:接口路径:debug])
