@@ -13,9 +13,9 @@ eureka:
       # 设置与 eureka Server 交互的地址查询服务和注册服务都需要依赖这个地址
       # 注意地址不能和实例名称重复 不然无法识别
       #集群指向别人
-      defaultZone: http://127.0.0.1:7002/eureka/
+#      defaultZone: http://127.0.0.1:7002/eureka/
 #      单机指向自己
-#      defaultZone: http://127.0.0.1:7001/eureka/
+      defaultZone: http://127.0.0.1:7001/eureka/
   server:
     # 禁用自我保护机制，保证不可用服务及时剔除
     enable-self-preservation: false

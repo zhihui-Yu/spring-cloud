@@ -1,0 +1,17 @@
+功能:
+    1. 服务降级 (当调用服务不可用时，立即返回一个结果: 如 "当前服务不可用 请稍后再试。") -- fallback
+    2. 服务熔断 (像保险丝一样，服务请求到达一点数量则拒绝访问，然后降级处理)
+    3. 服务限流 (高并发场景 -> 当请求量高时候，让其排队 一秒处理N个 )
+
+实现:
+    1. 服务降级：
+    ```
+    @HystrixCommand(fallbackMethod = "timeoutHandler", commandProperties = {
+         @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+    })
+    ```
+    > fallbackMethod 降级的处理方法
+      @HystrixProperty： 降级的时机配置
+
+
+
