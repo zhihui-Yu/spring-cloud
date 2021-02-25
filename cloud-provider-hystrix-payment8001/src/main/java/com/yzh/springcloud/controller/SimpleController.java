@@ -1,5 +1,7 @@
 package com.yzh.springcloud.controller;
 
+import cn.hutool.core.util.IdUtil;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.yzh.springcloud.service.SimpleService;
@@ -18,6 +20,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @Slf4j
+@DefaultProperties(defaultFallback = "globalHandler")
 public class SimpleController {
     private final Logger logger = LoggerFactory.getLogger(SimpleController.class);
     @Value("${server.port}")
@@ -44,5 +47,36 @@ public class SimpleController {
     public String timeoutHandler(@PathVariable("id") String id) {
         logger.info("------ timeout handler ------");
         return "timeout - handler";
+    }
+
+    // 以下是全局降级配置
+    @GetMapping("/{id}/global")
+    @HystrixCommand
+    public String global(@PathVariable("id") String id) {
+        logger.info("------ global ------");
+        int i = 1/0;
+        return simpleService.ok(id);
+    }
+
+    public String globalHandler() {
+        logger.info("------ global handler ------");
+        return "global - handler";
+    }
+
+    // === 熔断
+    @HystrixCommand(fallbackMethod = "breakerHandler", commandProperties = {
+        @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
+        @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"), // 是否开启熔断器
+        @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "1000"),// 时间窗口期
+        @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60")//失败率达到多少后跳闸
+    })
+    @GetMapping("/{id}/circuit")
+    public String circuitBreaker(@PathVariable("id") Integer id) {
+        if (id< 0) throw new RuntimeException("id < 0");
+        String uid = IdUtil.objectId();
+        return Thread.currentThread().getName()+"\t"+" return id -> "+uid;
+    }
+    public String breakerHandler(@PathVariable("id") Integer id) {
+        return "breaker_handler";
     }
 }

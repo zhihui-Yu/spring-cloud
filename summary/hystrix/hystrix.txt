@@ -5,13 +5,35 @@
 
 实现:
     1. 服务降级：
-    ```
-    @HystrixCommand(fallbackMethod = "timeoutHandler", commandProperties = {
-         @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
-    })
-    ```
-    > fallbackMethod 降级的处理方法
-      @HystrixProperty： 降级的时机配置
+        1.1
+         ```
+         @HystrixCommand(fallbackMethod = "timeoutHandler", commandProperties = {
+              @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")
+         })
+         ```
+         > fallbackMethod 降级的处理方法
+           @HystrixProperty： 降级的时机配置
 
+       1.2. 解耦：解决为每个接口都写一个fallback 方法 ->
+        >  1. 在类上加 @DefaultProperties(defaultFallback = "globalHandler") 并在类内部实现globalHandler方法。
+           2. 在需要服务降级的方法上添加@HystrixCommand即可.(如果需要为特别的方法定制fallback，在注解内指明方法即可。)
 
+       1.3. 为每个服务做降级。
 
+        > 实现有 @feignClient 注解的类，并在注解内配置fallback=实现类 + properties 中添加如下即可。
+        feign:
+          hystrix:
+            enabled: true
+
+   2. 服务熔断  (properties配置可以看HystrixCommandProperties)
+       2.1 在方法上配置
+          @HystrixCommand(fallbackMethod = "breakerHandler", commandProperties = {
+              @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
+              @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"), // 是否开启熔断器
+              @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "1000"),// 时间窗口期
+              @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60")//失败率达到多少后跳闸
+          })
+
+> hystrix dashboard
+    1. url:http://localhost:9002/hystrix
+    2. 输入需要检测的服务地址: http://localhost:8001/hystrix.stream
