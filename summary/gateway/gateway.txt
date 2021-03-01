@@ -1,0 +1,14 @@
+gateway:
+    spring-cloud 组件之一。
+    由于等不了zuul2的现世，spring自己研发的一个网关管理服务，负责路由管理。
+
+一般请求流程
+app/browser/mobile -> nginx -> gateway -> service
+
+配置方式：
+    仍然有两种。一种是yml，一种是编码。
+
+功能:
+    1. 路由，配置routes，那些请求要转发
+    2. 断言，predicates， 那些请求可以过，那些不可以
+    3. 过滤器，包含单一，全局，自定义三种
