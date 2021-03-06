@@ -27,6 +27,7 @@
         <module>cloud-gateway-gateway9527</module>
         <module>cloud-config-center5544</module>
         <module>cloud-config-client5533</module>
+        <module>cloud-config-client5522</module>
     </modules>
 
     <name>Maven</name>

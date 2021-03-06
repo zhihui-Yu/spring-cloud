@@ -12,8 +12,21 @@ spring:
           default-label: main # 读取的分支
           search-paths: # 搜索目录
             - springcloud-config
+  # rabbit-mq 配置
+  rabbitmq:
+    host: 192.168.123.128
+    port: 5672
+    username: guest
+    password: guest
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:7001/eureka
+
+# 暴露刷新配置的端口
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'

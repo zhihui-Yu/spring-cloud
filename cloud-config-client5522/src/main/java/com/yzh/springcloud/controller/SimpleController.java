@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RefreshScope
-public class ConfigController {
+public class SimpleController {
     @Value("${server.port}")
     String port;
     @Value("${config.info}")
     String configInfo;
 
-    @GetMapping("/config")
-    public String config() {
-        return port + "-" +configInfo;
+    @GetMapping("/info")
+    public String getConfigInfo() {
+        return port + "-" + configInfo;
     }
 }

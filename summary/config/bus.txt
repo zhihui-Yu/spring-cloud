@@ -1,0 +1,22 @@
+Spring-cloud-bus: 消息总线。通过集成rabbitmq或者kafka等消息中间件轻量级的实现消息的广播功能。
+
+前提
+    1. 在所有服务上都依赖spring-cloud-starter-bus-amqp以及spring-boot-starter-actuator
+    2. 配置rabbitmq信息。
+        ```
+        spring:
+          # rabbit-mq 配置
+          rabbitmq:
+            host: 192.168.123.128
+            port: 5672
+            username: guest
+            password: guest
+        ```
+
+实现：框架会订阅一个springCloudBus的通道在mq上，
+      然后当调用curl -X POST "http://localhost:5544/actuator/bus-refresh" 请求刷新配置到配置中心后。
+      配置中心会发布一条消息到mq。
+      其他也依赖bus的订阅者服务就会接受到mq消息，然后去更新配置。
+
+备注：
+    curl -X POST "http://localhost:5544/actuator/bus-refresh/application-name:port" 来实现广播固定地址的服务

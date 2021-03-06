@@ -1,10 +1,10 @@
 # 优先级比application高，是系统的一个配置
 server:
-  port: 5533
+  port: 5522
 
 spring:
   application:
-    name: cloud-config-client-1
+    name: cloud-config-client-2
   cloud:
     config:
       label: main # 分支名称
