@@ -1,0 +1,19 @@
+Nacos == 注册中心(eureka/consul/zk) + 文件配置(config+bus) 一站式管理。
+支持AP/CP之间的切换, 自带负载均衡。
+
+
+下载地址 https://nacos.io/zh-cn/
+启动：startup.cmd -m standalone
+默认地址：http://localhost:8848/nacos/#/login
+默认账户：nacos/nacos
+
+配置：
+    application.yml中
+
+    spring:
+      application:
+        name: nacos-provider
+      cloud:
+        nacos:
+          discovery:
+            server-addr: 127.0.0.1:8848
