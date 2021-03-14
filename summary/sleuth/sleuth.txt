@@ -1,0 +1,23 @@
+sleuth: 分布式链路追踪。 监控服务调用的链路，如订单->库存->物流->..., 了解过程中发生的事情。
+
+sleuth 负责链路的追踪，zipkin负责展现
+
+zipkin地址 https://dl.bintray.com/openzipkin/maven/io/zipkin/java/zipkin-server/
+直接用java -jar zipkin.jar就可以了，默认网站 http://localhost:9411/zipkin/
+
+
+1. 在服务中引入
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-zipkin</artifactId>
+</dependency>
+
+2. 在yml中导入
+spring:
+  application:
+    name: cloud-payment-service
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1 # 采样率，介于0-1，1表示全采集

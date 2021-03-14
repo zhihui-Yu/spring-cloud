@@ -11,9 +11,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 @Component
 public class MyselfLoadBalance implements LoadBalance {
-    private AtomicInteger atomicInteger = new AtomicInteger(0);
+    private final AtomicInteger atomicInteger = new AtomicInteger(0);
 
-    private final int getAndIncrement() {
+    private int getAndIncrement() {
         int cur, next;
         do {
             cur = atomicInteger.get();
