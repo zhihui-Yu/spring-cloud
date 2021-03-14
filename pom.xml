@@ -28,6 +28,9 @@
         <module>cloud-config-center5544</module>
         <module>cloud-config-client5533</module>
         <module>cloud-config-client5522</module>
+        <module>cloud-stream-rabbitmq-provider8801</module>
+        <module>cloud-stream-rabbitmq-consumer8802</module>
+        <module>cloud-stream-rabbitmq-consumer8803</module>
     </modules>
 
     <name>Maven</name>

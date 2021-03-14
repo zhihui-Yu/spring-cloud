@@ -1,0 +1,14 @@
+spring cloud stream:
+    可以不关心具体使用哪种mq，在Stream中只需要关心Source(发送的消息)和Sink(接收的消息)和binder(MQ类型)。
+    解决了服务与MQ直接的强耦合
+
+官网地址：https://spring.io/projects/spring-cloud-stream
+
+MQ 问题：
+    1. 重复消费
+    2. 持久化，消息发送了，但是消费者挂了，如果没有分组的话，消费者是不会去消费的。
+
+消费者分组很重要， 既可以避免重复消费， 又可以获取之前没有消费的消息。
+
+rabbitmq：
+  重复消费：由于默认每个订阅者都是一个group，同一个group中订阅者是竞争关系，只有一个服务可以消费消息。
