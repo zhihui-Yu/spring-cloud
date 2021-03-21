@@ -17,3 +17,18 @@ Nacos == 注册中心(eureka/consul/zk) + 文件配置(config+bus) 一站式管�
         nacos:
           discovery:
             server-addr: 127.0.0.1:8848
+
+
+配置中心：
+    在bootstrap.yml中配置nacos地址(注册中心地址)。 在nacos中 修改配置文件就会同步到项目中。
+     配置的三个概念，namespace group dataId,  第一个像是市的概念，第二个是区的改变，dataId指具体的配置文件。
+
+nacos中配置的规则为
+> # ${prefix}-${spring.profiles.active}.${file-extension}
+
+  # prefix 默认为 spring.application.name
+
+  # ${file-extension} -> spring.cloud.nacos.config.file-extension
+
+
+重点：集群配置 + Nginx配置 + Mysql配置
