@@ -35,6 +35,7 @@
         <module>cloudalibaba-nacos-provider9002</module>
         <module>cloudalibaba-nacos-consumer84</module>
         <module>cloudalibaba-config-nacos-client3377</module>
+        <module>cloudalibaba-sentinel-service8401</module>
     </modules>
 
     <name>Maven</name>
