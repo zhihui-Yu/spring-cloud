@@ -16,6 +16,7 @@ public class NacosController {
 
     @GetMapping("/nacos/get")
     public String get() {
+//        throw new NullPointerException();
         return "server-port: " + port;
     }
 }
