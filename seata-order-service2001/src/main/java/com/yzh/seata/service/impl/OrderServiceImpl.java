@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
     private AccountService accountService;
 
     @Override
-    @GlobalTransactional
+    @GlobalTransactional(name = "order-create", rollbackFor = Exception.class)
     public void create(Order order) {
         logger.info("start create order.");
         orderDao.create(order);

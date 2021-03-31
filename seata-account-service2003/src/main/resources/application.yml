@@ -1,9 +1,9 @@
 server:
-  port: 2001
+  port: 2003
 
 spring:
   application:
-    name: seata-order-service
+    name: seata-account-service
   cloud:
     alibaba:
       seata:
@@ -14,7 +14,7 @@ spring:
         server-addr: localhost:8848
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.123.128:3306/seata_order
+    url: jdbc:mysql://192.168.123.128:3306/seata_accont
     username: root
     password: root
 
