@@ -28,11 +28,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @GlobalTransactional(name = "order-create", rollbackFor = Exception.class)
     public void create(Order order) {
+        System.out.println(order);
         logger.info("start create order.");
         orderDao.create(order);
         logger.info("start decrease storage.");
         storageService.decrease(order.getProductId(), order.getCount());
         logger.info("start decrease account.");
+        int i = 1/0;
         accountService.decrease(order.getUserId(), order.getMoney());
         logger.info("modify order status");
         orderDao.update(order.getId(), order.getStatus());

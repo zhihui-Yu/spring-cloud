@@ -18,6 +18,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void decrease(Long userId, BigDecimal money) {
+        System.out.println(userId + "---------------" + money);
         accountDao.decrease(userId, money);
     }
 

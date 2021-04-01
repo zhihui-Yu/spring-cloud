@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yzh.seata.domain.OrderDao">
+<mapper namespace="com.yzh.seata.dao.AccountDao">
     <resultMap id="resultMap" type="com.yzh.seata.domain.Account">
         <id column="id" property="id" jdbcType="BIGINT"/>
         <result column="user_id" property="userId" jdbcType="BIGINT"/>
@@ -11,7 +11,7 @@
     </resultMap>
 
     <insert id="decrease">
-        update t_account set used = used + #{money} and residue = residue - #{money}
+        update t_account set used = used + #{money}, residue = residue - #{money}
         where user_id = #{userId};
     </insert>
 </mapper>

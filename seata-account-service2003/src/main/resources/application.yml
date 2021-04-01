@@ -12,9 +12,10 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
+        group: SEATA_GROUP
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.123.128:3306/seata_accont
+    url: jdbc:mysql://192.168.123.128:3306/seata_account
     username: root
     password: root
 

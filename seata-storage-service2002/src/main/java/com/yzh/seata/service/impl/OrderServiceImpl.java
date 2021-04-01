@@ -21,6 +21,7 @@ public class OrderServiceImpl implements StorageService {
     @Override
     public CommonResult<String> decrease(Long productId, Integer count) {
         logger.info("开始扣减库存");
+        System.out.println(productId + "-----------" + count);
         storageDao.decrease(productId, count);
         return new CommonResult<>(204, "库存扣减成功。");
     }
